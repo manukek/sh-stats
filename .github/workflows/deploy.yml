@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      WIDGET_ENV: ${{ secrets.WIDGET_ENV }}
+      WIDGET_ENV: ${{ secrets.WIDGET_ENV || '' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -50,6 +50,8 @@ jobs:
         run: npm run render:dist
 
       - uses: actions/configure-pages@v5
+        with:
+          enablement: enabled
 
       - uses: actions/upload-pages-artifact@v3
         with:
