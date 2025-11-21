@@ -18,7 +18,7 @@ const exportStaticWidget = async () => {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kitty Fastfetch Widget</title>
+    <title>MNQ Shell</title>
     <style>
       body { margin: 0; background: #05070c; display: flex; min-height: 100vh; align-items: center; justify-content: center; }
       body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at top, rgba(255,255,255,0.09), rgba(11,16,22,0)); }
