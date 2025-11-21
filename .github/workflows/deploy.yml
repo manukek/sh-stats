@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      WIDGET_ENV: ${{ secrets.WIDGET_ENV }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -32,13 +34,13 @@ jobs:
         run: npm ci
 
       - name: Ensure WIDGET_ENV secret exists
-        if: ${{ secrets.WIDGET_ENV == '' }}
+        if: ${{ env.WIDGET_ENV == '' }}
         run: |
           echo "::error::Set the WIDGET_ENV secret with your .env contents" && exit 1
 
       - name: Write .env file
-        if: ${{ secrets.WIDGET_ENV != '' }}
-        run: printf '%s' "${{ secrets.WIDGET_ENV }}" > .env
+        if: ${{ env.WIDGET_ENV != '' }}
+        run: printf '%s' "${WIDGET_ENV}" > .env
         shell: bash
 
       - name: Build TypeScript
